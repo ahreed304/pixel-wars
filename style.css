@@ -1,0 +1,14 @@
+/* style page for Group Three's Project 3 - Pixel Wars */
+
+body {
+    font-family: Georgia;
+    background-color: #C1C8E4;
+}
+
+h1, h2 {
+    color: #8860D0;
+}
+
+.col-md-12 jumbotron text-center {
+    background-color: #C1C8E4;
+}
