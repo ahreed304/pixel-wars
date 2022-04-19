@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pixel Wars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">å
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./static/js/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <!-- jumbotron -->
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Pixel Wars</h1>
+        <p>use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+    <hr>
+    
+    <!-- drop-down box -->
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well">
+            <h5>Test Subject ID No.:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)">
+            <option value="nothing1">nothing1</option>
+            <option value="nothing2">nothing2</option>
+          </select>
+          </div>
+
+        <!-- demographic info panel -->  
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Demographic Info</h3>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+
+      <!-- colors treemap / squareify plot -->
+      <div class="col-md-5">
+        <div id="treemap"></div>
+            <h2>Colors Used</h5>
+                <p>these are the colors and porportions used</p>
+                <img src="{{url_for('static', filename='assets/Colors_Square_10x10.png')}}" align="middle" />
+      </div>
+
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart" id="bargraph">
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- another plot -->
+      <div class="col-md-5">
+        <div id="gauge"></div>
+        <h2>Put Another Chart Here</h5>
+      </div>
+    </div>
+
+    <!-- a big plot -->
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+            <h2>A Big Chart Can Go Here</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart" id="bargraph">
+    <script>
+        var graphs = {{plot | safe}};
+        Plotly.plot('bargraph',graphs,{});
+    </script>
+</div>
+
+</body>
+
+</html>
