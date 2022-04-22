@@ -16,87 +16,84 @@
 
 <body>
 
-  
-    <div class="row">
-      <!-- jumbotron -->
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Pixel Wars</h1>
-        <p>visualizations from the r/place 2022 canvas</p>
-      </div>
+  <!-- jumbotron -->
+  <div class="row">
+    <div class="col-md-12 jumbotron text-center">
+      <h1>Pixel Wars</h1>
+      <p>visualizations from the r/place 2022 canvas</p>
     </div>
-    <hr>
-    
+  </div>
+        
   <div class="container">  
     <!-- drop-down box -->
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div class="well">
-            <h5>Test Subject ID No.:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)">
-            <option value="nothing1">nothing1</option>
-            <option value="nothing2">nothing2</option>
-          </select>
-          </div>
+          <h5>Location To Analyze</h5>
+            <select id="selDataset" onchange="optionChanged(this.value)">
+              <option value="Dataset1">Dataset1 Name Here</option>
+              <option value="Dataset2">Dataset2 Name Here</option>
+            </select>
+        </div>
+      </div>  
 
         <!-- demographic info panel -->  
-        <div class="panel panel-primary">
+        <!-- <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Demographic Info</h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
-      </div>
+      </div> -->
 
       <!-- colors treemap / squareify plot -->
-      <div class="col-md-5">
-        <div id="treemap"></div>
+      <div class="col-md-4">
+        <div id="treemap">
             <h2>Colors Used</h5>
-                <p>these are the colors and porportions used</p>
-                <img src="{{url_for('static', filename='assets/Colors_Square_10x10.png')}}" align="middle" />
-      </div>
-
-      <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="chart" id="bargraph">
-    
-                </div>
-            </div>
+                <p>A proportional representation of the colors used</p>
+                <img src="{{url_for('static', filename='assets/Colors_Square_10x10.png')}}" 
+                  align="left"
+                  height="250"
+                  width="400"/>
         </div>
-    </div>
-
+      </div>
+   
       <!-- another plot -->
       <div class="col-md-5">
-        <div id="barplot"></div>
-        <h2>Put Another Chart Here</h5>
-          <script>
-            var barplot_dataset = {{barplot_dataset | safe}};
-            var data = [
-              {
-                x: barplot_dataset.x,
-                y: barplot_dataset.y,
-                
-                type: 'bar',
-                hoverongaps: false
-              }
-              ];
-              var layout = {
-                xaxis: {
-                  type: 'linear',
-                  autorange: true
-                },
-                yaxis: {
-                  type: 'log',
-                  autorange: true
+        <h2>Put Another Chart Here</h2>
+          <div id="barplot">
+            <script>
+              var barplot_dataset = {{barplot_dataset | safe}};
+              var data = [
+                {
+                  x: barplot_dataset.x,
+                  y: barplot_dataset.y,
+                  
+                  type: 'bar',
+                  hoverongaps: false
                 }
-              };
+                ];
+                var layout = {
+                  xaxis: {
+                    type: 'linear',
+                    autorange: true
+                  },
+                  yaxis: {
+                    type: 'log',
+                    autorange: true
+                  }
+                };
 
-              Plotly.newPlot('barplot', data, layout);
-         </script>
+                Plotly.newPlot('barplot', data, layout);
+          </script>
+      <p></p>
+      <p></p>
       </div>
     </div>
+  </div>
 
     <!-- a big plot -->
+    <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div id="heatmap"></div>
