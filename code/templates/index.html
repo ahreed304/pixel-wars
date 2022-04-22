@@ -74,17 +74,28 @@
     <!-- a big plot -->
     <div class="row">
       <div class="col-md-12">
-        <div id="bubble"></div>
+        <div id="heatmap"></div>
             <h2>A Big Chart Can Go Here</h5>
+            <script>
+              var heatmap_dataset = {{heatmap_dataset | safe}};
+              var data = [
+              {
+                z: heatmap_dataset.data,
+                x: ['midnight', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', 'noon', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'],
+                y: heatmap_dataset.date_column,
+                type: 'heatmap',
+                hoverongaps: false
+              }
+              ];
+
+              Plotly.newPlot('heatmap', data);
+           </script>
+           <div id="foo"></div>
       </div>
     </div>
   </div>
 
   <div class="chart" id="bargraph">
-    <script>
-        var graphs = {{plot | safe}};
-        Plotly.plot('bargraph',graphs,{});
-    </script>
 </div>
 
 </body>
