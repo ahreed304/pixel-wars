@@ -66,8 +66,32 @@
 
       <!-- another plot -->
       <div class="col-md-5">
-        <div id="gauge"></div>
+        <div id="barplot"></div>
         <h2>Put Another Chart Here</h5>
+          <script>
+            var barplot_dataset = {{barplot_dataset | safe}};
+            var data = [
+              {
+                x: barplot_dataset.x,
+                y: barplot_dataset.y,
+                
+                type: 'bar',
+                hoverongaps: false
+              }
+              ];
+              var layout = {
+                xaxis: {
+                  type: 'linear',
+                  autorange: true
+                },
+                yaxis: {
+                  type: 'log',
+                  autorange: true
+                }
+              };
+
+              Plotly.newPlot('barplot', data, layout);
+         </script>
       </div>
     </div>
 
