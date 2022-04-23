@@ -21,12 +21,11 @@ body {
 }
 
 #treemap {
-    width: 600px;
-    height: 400px;
 }
 
-hr {
-    border: 1px solid #FF4500;
+
+.top-buffer { 
+    margin-top:40px; 
 }
 
 h1{

@@ -47,7 +47,9 @@
         <h2>Colors Used</h2>
           <p>a proportional representation of the colors used</p>
             <div id="treemap">   
-              <img src="{{url_for('static', filename='assets/Colors_Square_10x10.png')}}">
+              <img src="{{url_for('static', filename='assets/Colors_Square_10x10.png')}}"
+                width = 600px
+                height = 400px>
               </div>   
       </div>
     
@@ -85,10 +87,11 @@
     </div>
 
 
-    <!-- interactive heat map -->
-    <div class="row">
+    <!-- HEATMAP interactive heat map -->
+    <div class="row top-buffer">
       <div class="col-md-12">
         <h2>Heatmap of Pixels Placed by Date and Time</h2>
+        <p>a graphical representation of the most active times users were placing pixels</p>
           <div id="heatmap"></div>
             <script>
               var heatmap_dataset = {{heatmap_dataset | safe}};
@@ -103,12 +106,9 @@
                 ];
                 Plotly.newPlot('heatmap', data);
             </script>
-          <div id="foo"></div>
       </div>
     </div>
   </div>
-  
-  <div class="chart" id="bargraph"></div>
 
 </body>
 
