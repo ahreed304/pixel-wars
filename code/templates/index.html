@@ -16,18 +16,20 @@
 
 <body>
 
+
   <!-- jumbotron -->
   <div class="row">
     <div class="col-md-12 jumbotron text-center">
       <h1>Pixel Wars</h1>
       <p>visualizations from the r/place 2022 canvas</p>
     </div>
-  </div>
-        
-  <div class="container">  
+  </div> 
+
+
+  <div class="container">
     <!-- drop-down box -->
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="well">
           <h5>Location To Analyze</h5>
             <select id="selDataset" onchange="optionChanged(this.value)">
@@ -35,32 +37,24 @@
               <option value="Dataset2">Dataset2 Name Here</option>
             </select>
         </div>
-      </div>  
-
-        <!-- demographic info panel -->  
-        <!-- <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
-        </div>
-      </div> -->
-
-      <!-- colors treemap / squareify plot -->
-      <div class="col-md-4">
-        <div id="treemap">
-            <h2>Colors Used</h5>
-                <p>A proportional representation of the colors used</p>
-                <img src="{{url_for('static', filename='assets/Colors_Square_10x10.png')}}" 
-                  align="left"
-                  height="250"
-                  width="400"/>
-        </div>
       </div>
-   
-      <!-- another plot -->
-      <div class="col-md-5">
-        <h2>Put Another Chart Here</h2>
+    </div>    
+
+
+    <!-- COLORS USED treemap / squareify plot -->
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Colors Used</h2>
+          <p>a proportional representation of the colors used</p>
+            <div id="treemap">   
+              <img src="{{url_for('static', filename='assets/Colors_Square_10x10.png')}}">
+              </div>   
+      </div>
+    
+      <!-- PIXELS BY USER interactive bar chart -->
+      <div class="col-md-6">
+        <h2>Pixels by User</h2>
+          <p>a logarithmic representation of the number of people who placed the given number of pixels</p>
           <div id="barplot">
             <script>
               var barplot_dataset = {{barplot_dataset | safe}};
@@ -85,40 +79,36 @@
                 };
 
                 Plotly.newPlot('barplot', data, layout);
-          </script>
-      <p></p>
-      <p></p>
+            </script>
+          </div>
       </div>
     </div>
-  </div>
 
-    <!-- a big plot -->
-    <div class="container">
+
+    <!-- interactive heat map -->
     <div class="row">
       <div class="col-md-12">
-        <div id="heatmap"></div>
-            <h2>A Big Chart Can Go Here</h5>
+        <h2>Heatmap of Pixels Placed by Date and Time</h2>
+          <div id="heatmap"></div>
             <script>
               var heatmap_dataset = {{heatmap_dataset | safe}};
               var data = [
-              {
-                z: heatmap_dataset.data,
-                x: ['midnight', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', 'noon', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'],
-                y: heatmap_dataset.date_column,
-                type: 'heatmap',
-                hoverongaps: false
-              }
-              ];
-
-              Plotly.newPlot('heatmap', data);
-           </script>
-           <div id="foo"></div>
+                {
+                  z: heatmap_dataset.data,
+                  x: ['midnight', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', 'noon', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'],
+                  y: heatmap_dataset.date_column,
+                  type: 'heatmap',
+                  hoverongaps: false
+                }
+                ];
+                Plotly.newPlot('heatmap', data);
+            </script>
+          <div id="foo"></div>
       </div>
     </div>
   </div>
-
-  <div class="chart" id="bargraph">
-</div>
+  
+  <div class="chart" id="bargraph"></div>
 
 </body>
 
